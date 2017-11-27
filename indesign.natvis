@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <!--
+  author: Juan Carlos SANCHEZ <indesign.natvis@gmail.com>
+  last version: https://github.com/juancarlossanchez/InDesign-natvis
+  -->
+
+
+  <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  
+  <Type Name="PMString">    
+    <DisplayString Condition="fNumChars == 0">""</DisplayString>
+    <DisplayString Condition="fStorage != 0">"{fStorage->fFirstCharOfBuffer,sub}"</DisplayString>
+    <DisplayString >"{fSmallStorage,sub}"</DisplayString>
+    <Expand>
+      <Item Name="[size]">fNumChars</Item>
+      <Item Name="[ShouldTranslate]" Condition="fShouldTranslate == 1" >true</Item>
+      <Item Name="[ShouldTranslate]" Condition="fShouldTranslate == 0" >false</Item>
+      <Item Name="[HasTranslated]" Condition="fHasTranslated == 1" >true</Item>
+      <Item Name="[HasTranslated]" Condition="fHasTranslated == 0" >false</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="WideString">
+    <DisplayString Condition="fNumChars == 0">""</DisplayString>
+    <DisplayString Condition="fStorage != 0">"{fStorage->fFirstCharOfBuffer,sub}"</DisplayString>
+    <DisplayString >"{fSmallStorage,sub}"</DisplayString>
+    <Expand>
+        <Item Name="[size]">fNumChars</Item>
+    </Expand>
+  </Type>
+  
+  <Type Name="IDFile">
+    <DisplayString>"{fDebugPath,sub}"</DisplayString>
+    <Expand>
+    </Expand>
+  </Type>
+
+  <Type Name="K2Vector&lt;*,*&gt;">
+    <DisplayString>{{Size = {fLength}}}</DisplayString>
+    <Expand>
+      <ArrayItems>
+        <Size>fLength</Size>
+        <ValuePointer>fArray</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+  
+  <Type Name="PMReal">
+    <DisplayString>{fRealValue,f}</DisplayString>
+    <Expand>
+    </Expand>
+  </Type>
+
+  
+</AutoVisualizer>
