@@ -3,3 +3,4 @@ images/* export-ignore
 /images/* export-ignore
 /images export-ignore
 README.md  export-ignore
+/README.md  export-ignore
