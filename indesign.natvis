@@ -8,49 +8,77 @@
 
   <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
   
-  <Type Name="PMString">    
-    <DisplayString Condition="fNumChars == 0">""</DisplayString>
-    <DisplayString Condition="fStorage != 0">"{fStorage->fFirstCharOfBuffer,sub}"</DisplayString>
-    <DisplayString >"{fSmallStorage,sub}"</DisplayString>
-    <Expand>
-      <Item Name="[size]">fNumChars</Item>
-      <Item Name="[ShouldTranslate]" Condition="fShouldTranslate == 1" >true</Item>
-      <Item Name="[ShouldTranslate]" Condition="fShouldTranslate == 0" >false</Item>
-      <Item Name="[HasTranslated]" Condition="fHasTranslated == 1" >true</Item>
-      <Item Name="[HasTranslated]" Condition="fHasTranslated == 0" >false</Item>
-    </Expand>
-  </Type>
-
-  <Type Name="WideString">
-    <DisplayString Condition="fNumChars == 0">""</DisplayString>
-    <DisplayString Condition="fStorage != 0">"{fStorage->fFirstCharOfBuffer,sub}"</DisplayString>
-    <DisplayString >"{fSmallStorage,sub}"</DisplayString>
-    <Expand>
+    <Type Name="PMString">    
+      <DisplayString Condition="fNumChars == 0">""</DisplayString>
+      <DisplayString Condition="fStorage != 0">"{fStorage->fFirstCharOfBuffer,sub}"</DisplayString>
+      <DisplayString >"{fSmallStorage,sub}"</DisplayString>
+      <Expand>
         <Item Name="[size]">fNumChars</Item>
-    </Expand>
-  </Type>
-  
-  <Type Name="IDFile">
-    <DisplayString>"{fDebugPath,sub}"</DisplayString>
-    <Expand>
-    </Expand>
-  </Type>
+        <Item Name="[ShouldTranslate]" Condition="fShouldTranslate == 1" >true</Item>
+        <Item Name="[ShouldTranslate]" Condition="fShouldTranslate == 0" >false</Item>
+        <Item Name="[HasTranslated]" Condition="fHasTranslated == 1" >true</Item>
+        <Item Name="[HasTranslated]" Condition="fHasTranslated == 0" >false</Item>
+      </Expand>
+    </Type>
 
-  <Type Name="K2Vector&lt;*,*&gt;">
-    <DisplayString>{{Size = {fLength}}}</DisplayString>
-    <Expand>
-      <ArrayItems>
-        <Size>fLength</Size>
-        <ValuePointer>fArray</ValuePointer>
-      </ArrayItems>
-    </Expand>
-  </Type>
+    <Type Name="WideString">
+      <DisplayString Condition="fNumChars == 0">""</DisplayString>
+      <DisplayString Condition="fStorage != 0">"{fStorage->fFirstCharOfBuffer,sub}"</DisplayString>
+      <DisplayString >"{fSmallStorage,sub}"</DisplayString>
+      <Expand>
+          <Item Name="[size]">fNumChars</Item>
+      </Expand>
+    </Type>
   
-  <Type Name="PMReal">
-    <DisplayString>{fRealValue,f}</DisplayString>
-    <Expand>
-    </Expand>
-  </Type>
+    <Type Name="IDFile">
+      <DisplayString>"{fDebugPath,sub}"</DisplayString>
+      <Expand>
+      </Expand>
+    </Type>
 
+    <Type Name="K2Vector&lt;*,*&gt;">
+      <DisplayString>{{Size = {fLength}}}</DisplayString>
+      <Expand>
+        <ArrayItems>
+          <Size>fLength</Size>
+          <ValuePointer>fArray</ValuePointer>
+        </ArrayItems>
+      </Expand>
+    </Type>
+  
+    <Type Name="PMReal">
+      <DisplayString>{fRealValue,f}</DisplayString>
+      <Expand>
+      </Expand>
+    </Type>
+    
+    <Type Name="IDType&lt;UID_tag&gt;">
+      <DisplayString >{{UID = {fIDInt}}}</DisplayString>
+      <Expand>
+      </Expand>
+    </Type>
+
+    <Type Name="UIDRef">
+      <DisplayString >{{UID = {fUID.fIDInt}}}</DisplayString>
+      <Expand>
+      </Expand>
+    </Type>
+
+    <Type Name="UIDList">
+      <DisplayString >{{Size = {fUIDList->fArray.fLength}}}</DisplayString>
+      <Expand>
+        <ArrayItems>
+          <Size>fUIDList->fArray.fLength</Size>
+          <ValuePointer>fUIDList->fArray.fArray</ValuePointer>
+        </ArrayItems>
+      </Expand>
+    </Type>
+
+    <Type Name="index_based_iterator&lt;UIDList,IDType&lt;*&gt;&gt;">
+      <DisplayString Condition="fPos &gt;= fContainer-&gt;fUIDList-&gt;fArray.fLength">end()</DisplayString>
+      <DisplayString >{(*fContainer)[fPos]}</DisplayString>
+      <Expand>
+      </Expand>
+    </Type>
   
 </AutoVisualizer>
